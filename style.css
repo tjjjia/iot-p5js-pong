@@ -1,0 +1,34 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+:root{
+	--fg: #fff;
+}
+
+html, body {
+	font-size: 36px;
+	cursor: none;
+}
+
+#score {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	z-index: 10;
+
+	display: flex;
+	justify-content: space-evenly;
+	padding: 0.5rem;
+}
+#score span {
+	display: inline-block;
+	width: 50%;
+	text-align: center;
+
+	color: var(--fg);
+	font-family: "Fragment Mono", monospace;
+	font-size: 1rem;
+}

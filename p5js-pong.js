@@ -4,9 +4,13 @@
  * requires p5.js
  * try out at https://editor.p5js.org
  */
-let BALL_SPEED = 0.2; // factor/multiplier
+let BALL_SPEED = 2; // factor/multiplier
 let P1_HEIGHT = 60; // height in pixels
 let P2_SPEED = 0.8; // px/tick
+
+/* connect to dom elements */
+let score__p1__ele = document.querySelector("#score--p1");
+let score__p2__ele = document.querySelector("#score--p2");
 
 let ball = {
   x: 300,
@@ -35,7 +39,7 @@ let player1 = {
   h: P1_HEIGHT/2, // using radius
   score: 0,
   reset: function() {
-    this.y = height / 2;
+    // this.y = height / 2;
   },
   position: function(y) {
     this.y = min(height, max(y, 0));
@@ -54,7 +58,7 @@ let player2 = {
   score: 0,
   reset: function() {
     this.x = width - 10;
-    this.y = height / 2;
+    // this.y = height / 2;
   },
   position: function(y) {
     this.y = min(height, max(y, 0));
@@ -65,7 +69,7 @@ let player2 = {
 }
 
 function setup() {
-  createCanvas(600, 480);
+  createCanvas(windowWidth, windowHeight);
   rectMode(RADIUS);
   stroke(255);
   fill(255);
@@ -82,6 +86,8 @@ let game = {
     player2.reset();
   },
   score: function() {
+    score__p1__ele.innerText = player1.score;
+    score__p2__ele.innerText = player2.score;
     console.log(`${player1.score} – ${player2.score}`);
   },
   tick: function() {
@@ -165,4 +171,9 @@ function draw() {
   player2.draw();
 
   game.tick();
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  game.reset()
 }
